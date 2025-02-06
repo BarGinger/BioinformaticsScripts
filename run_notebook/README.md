@@ -4,10 +4,10 @@ This script allows you to run a Jupyter Notebook on a remote server and access i
 
 ## Prerequisites
 
-- Python 3.12
-1. SSH access to the remote server
-2. Conda installed on the remote server
-3. Enable StrictHostKeyChecking
+1. Python 3.12
+2. SSH access to the remote server
+3. Conda installed on the remote server
+4. Enable StrictHostKeyChecking
 
     In order for the scripts to work, you need to enable passwordless SSH login. Follow these steps to set it up:
 
