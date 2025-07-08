@@ -15,6 +15,7 @@ app.layout = html.Div([
     dcc.Store(id="navigation-state", data={"navigated": False}),  # Track navigation state
     dcc.Store(id="stored-env-name"),  # Store for env_name
     dcc.Store(id="stored-dest-folder"),  # Store for dest_folder
+    dcc.Store(id="selected-hostname"),  # Store for selected hostname
     html.Div(className="logo-container", children=[
         html.Img(src="/assets/UU_logo.png", className="app-logo"),
     ]),
@@ -39,7 +40,7 @@ app.layout = html.Div([
 ]),
 
 @callback(
-    [Output("page-location", "pathname"), Output("server-data", "data"), Output("navigation-state", "data")],
+    [Output("page-location", "pathname", allow_duplicate=True), Output("server-data", "data"), Output("navigation-state", "data")],
     [Input("page-location", "pathname")],
     [State("navigation-state", "data")],
     prevent_initial_call=True

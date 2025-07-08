@@ -2,7 +2,7 @@ from dash import html, dcc, Output, Input, State, no_update, callback, clientsid
 import dash
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
-from session_manager import run_command_with_paramiko, parse_ai_output, close_ssh_session, connect_and_run_jupyter
+from session_manager import run_command_with_paramiko, parse_ai_output, close_ssh_session
 
 # Register this page with Dash Pages
 dash.register_page(__name__, path="/servers")
@@ -14,7 +14,6 @@ caption = dmc.TableCaption("Click a row to select a server.")
 layout = html.Div([
     dcc.Location(id="page-location-servers", refresh=False),  # Detect page load
     dcc.Store(id="selected-row-index"),  # Store for selected row index
-    dcc.Store(id="selected-hostname"),  # Store for selected hostname
     # Custom confirmation modal
     dmc.Modal(
         title=dmc.Text("Confirmation Required", className="confirmationTitle"),  # Use dmc.Text with the className
@@ -52,29 +51,6 @@ layout = html.Div([
                         h=400,
                         radius="md",
                         src="/assets/loading.gif",
-                    )
-                ]
-            )
-        },
-        overlayProps={"radius": "md", "blur": "0.3"}
-    ),
-    dmc.LoadingOverlay(
-        visible=False,
-        id="loading-overlay-notebook",
-        zIndex=1000,
-        loaderProps={
-            "variant": "custom",
-            "children": 
-            dmc.Box(
-                children=[
-                    dmc.Text(
-                        "Opening connecion the Jupyter server ... Please wait, this may take a moment",
-                        style={"color": "#01283a", "fontSize": "18px", "marginTop": "20px", "fontWeight": "bold"},
-                    ),
-                    dmc.Image(
-                        h=400,
-                        radius="md",
-                        src="/assets/loading-cat.gif",
                     )
                 ]
             )
@@ -159,24 +135,6 @@ clientside_callback(
     Output("loading-overlay-servers", "visible", allow_duplicate=True),
     Input("page-location-servers", "pathname"),
     Input("fetch-servers-btn", "n_clicks"),
-    prevent_initial_call=True,
-)
-
-clientside_callback(
-    """
-    function updateLoadingStateNotebook(pathname, n_clicks) {
-        if (!pathname || pathname !== "/servers") {
-            return false;  // Hide the loading overlay if not on the servers page
-        }
-        if (n_clicks && n_clicks > 0) {
-            return true;  // Show the loading overlay
-        }
-        return false;  // Hide the loading overlay
-    }
-    """,
-    Output("loading-overlay-notebook", "visible", allow_duplicate=True),
-    Input("page-location-servers", "pathname"),
-    Input("confirm-yes-btn", "n_clicks"),
     prevent_initial_call=True,
 )
 
@@ -288,7 +246,7 @@ def on_select_server(selected_index, server_data):
     [
      Output("jupyter-status", "children"),  # Update the Jupyter status message
      Output("confirm-modal", "opened", allow_duplicate=True),
-     Output("loading-overlay-notebook", "visible"),  # Update loading overlay visibility
+     Output("_pages_location", "pathname", allow_duplicate=True),  # Navigate to notebook page
     ],  # Close the modal
      
     [Input("confirm-yes-btn", "n_clicks"),  # Triggered when the user clicks "Yes"
@@ -306,26 +264,22 @@ def handle_confirmation(yes_clicks, no_clicks, hostname, server_data, env_name, 
     ctx = dash.callback_context
 
     if not ctx.triggered:
-        return no_update, no_update, False
+        return no_update, no_update, no_update
 
     # Determine which button was clicked
     triggered_id = ctx.triggered[0]["prop_id"].split(".")[0]
 
     if triggered_id == "confirm-no-btn":
-        return "⚪ Action canceled.", False, False
+        return "⚪ Action canceled.", False, no_update
 
     if triggered_id == "confirm-yes-btn":
-        try:
-            status_message = connect_and_run_jupyter(hostname, env_name, dest_folder)
-            return status_message, False, False
+        # Navigate to the notebook page instead of running Jupyter here
+        return f"🔄 Navigating to notebook session for {hostname}...", False, "/notebook"
 
-        except Exception as e:
-            return f"❌ {str(e)}", False, False
-
-    return no_update, False, False
+    return no_update, False, no_update
 
 @callback(
-    Output("_pages_location", "pathname"),
+    Output("_pages_location", "pathname", allow_duplicate=True),
     Input("logout-btn", "n_clicks"),
     prevent_initial_call=True
 )
