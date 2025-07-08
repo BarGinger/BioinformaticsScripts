@@ -1,0 +1,342 @@
+/* General body styling */
+body {
+    background-color: #574b4028; /* Dark gray background */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    color: #f5f5f5; /* Light gray text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+h1, h2, h3 {
+    text-align: center;
+    color: #ffcc00; /* Yellow for headers to match the UU logo */
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Form group styling */
+.form-group {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 16px;
+}
+
+label {
+    font-weight: 700;
+    font-size: 15px;
+    margin-right: 12px;
+    min-width: 120px; /* Adjust as needed for consistent label width */
+    text-align: right;
+    color: #f5f5f5; /* Light gray text for labels */
+}
+
+/* Input styling */
+.textInput {
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    width: auto; /* Prevent stretching */
+    min-width: 20rem; /* Minimum width for inputs */
+    flex: 1; /* Allow input to take remaining space */
+    box-sizing: border-box;
+    color: #f5f5f5; /* Light gray text for inputs */
+}
+
+/* Button styling */
+.button {
+    padding: 12px 5px;
+    background-color: #ffcc00; /* Yellow button background */
+    color: #000; /* Black text for contrast */
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    /* max-width: 20rem; */
+    min-width: 20rem; /* Minimum width for buttons */
+}
+
+.button:hover {
+    background-color: #e6b800; /* Slightly darker yellow on hover */
+}
+
+.button-fetch-servers {
+    padding: 12px 5px;
+    background-color: #ffcc00; /* Yellow button background */
+    color: #000; /* Black text for contrast */
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    /* max-width: 20rem; */
+    width: 8.5rem; /* Minimum width for buttons */
+}
+
+.button-fetch-servers:hover {
+    background-color: #e6b800; /* Slightly darker yellow on hover */
+}
+
+
+.button-logout {
+    padding: 12px 5px;
+    background-color: #b71c14d2; /* Yellow button background */
+    color: #000; /* Black text for contrast */
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    width: 7rem;;
+}
+
+.button-logout:hover {
+    background-color: #cb1b12; /* Slightly darker yellow on hover */
+}
+
+/* Button container */
+.button-container {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    align-items: center; /* Centers the button vertically */
+}
+
+/* Status box styling */
+#status {
+    margin-top: 30px;
+    background-color: #3f3f3f; /* Medium gray background for the status box */
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Slightly darker shadow */
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #f5f5f5; /* Light gray text for the status box */
+}
+
+/* Container styling */
+.dash-container {
+    background-color: #052350a6; /* Medium gray container background */
+    max-width: 1000px;
+    height: 100% !important;
+    min-height: 700px; 
+    margin: 20px auto;
+    padding: 5px 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Slightly darker shadow */
+}
+
+/* Required field asterisk */
+.required-field {
+    color: red;
+    font-weight: bold;
+    vertical-align: super; /* Makes the asterisk appear slightly above the label text */
+    font-size: smaller; /* Optional: Makes the asterisk slightly smaller */
+}
+
+/* Custom style for the checklist label */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Ensures the label and checkbox are in the same row */
+    margin-left: auto; /* Aligns the label to the right */
+}
+
+.custom-checkbox .dash-checkbox-container {
+    margin-left: auto; /* Pushes the checkbox to the right */
+}
+
+.custom-checkbox label {
+    color: #01283a !important;
+    font-weight: bold;
+}
+
+/* Logo styling */
+.logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.app-logo {
+    width: 240px; /* Adjust the size of the logo */
+    height: auto;
+}
+
+.jupyter-logo-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.jupyter-logo{
+    width: 110px; /* Adjust the size of the logo */
+    height: auto;
+}
+
+.dash-spinner {
+    color: #ffcc00 !important; /* Yellow spinner to match the UU logo */
+}
+
+#error-message {
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#status {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #f5f5f5; /* Light gray text for the status box */
+    margin-top: 20px;
+    text-align: center;
+}
+
+.server-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.server-table th, .server-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.server-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+._dash-loading {
+    margin: auto;
+    color: transparent;
+    width: 0;
+    height: 0;
+    text-align: center;
+  }
+  
+  ._dash-loading::after {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    color: black;
+    vertical-align: text-bottom;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: spinner-border 0.75s linear infinite;
+    animation: spinner-border 0.75s linear infinite;
+    margin-top: 2rem;
+  }
+
+/* Styling for the server table */
+/* Styling for the server table */
+.server-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff; /* White background for the table */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensures rounded corners apply to the entire table */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.server-table th, .server-table td {
+    padding: 8px 10px; /* Reduced padding for tighter rows */
+    text-align: left; /* Align text to the left */
+    border-bottom: 1px solid #ddd; /* Add a subtle border between rows */
+}
+
+.server-table th {
+    background-color: #f4f4f4; /* Light gray background for the header */
+    font-weight: bold; /* Bold text for headers */
+    color: #333333; /* Darker text for better contrast */
+    text-transform: uppercase; /* Make header text uppercase */
+    font-size: 14px; /* Slightly smaller font size for headers */
+}
+
+/* Fix hover effect for table rows */
+/* Fix hover effect for table rows */
+.server-table tr:hover {
+    background-color: #e0f7fa !important; /* Light blue background on hover */
+    cursor: pointer !important; /* Ensure pointer cursor on hover */
+}
+
+/* Ensure Mantine styles do not override hover effect */
+.server-table tr[data-hover]:hover {
+    background-color: #e0f7fa !important; /* Light blue background on hover */
+}
+
+.server-table td {
+    font-size: 14px; /* Slightly smaller font size for table data */
+    color: #333333; /* Darker text for table data */
+    vertical-align: middle; /* Center-align content vertically */
+}
+
+/* Add a subtle border to the table */
+/* Make the table container scrollable */
+.server-table-container {
+    max-height: 400px; /* Set the maximum height for the table */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    position: relative; /* Ensure the container is positioned for sticky headers */
+}
+
+/* Fix the table headers */
+.server-table thead th {
+    position: sticky; /* Make the headers stick to the top */
+    top: 0; /* Stick to the top of the container */
+    z-index: 2; /* Ensure headers are above the rows */
+    background-color: #f4f4f4; /* Background color for the headers */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
+/* Optional: Add hover effect for rows */
+.server-table tbody tr:hover {
+    background-color: #e0f7fa; /* Light blue background on hover */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Fix zebra striping for the table */
+.server-table tr:nth-child(odd) {
+    background-color: #f9f9f9 !important /* Light gray for odd rows */
+}
+
+.server-table tr:nth-child(even) {
+    background-color: #ffffff !important /* White for even rows */
+}
+
+/* Ensure text is always visible */
+.server-table td, .server-table th {
+    color: #333333 !important /* Dark text for better contrast */
+}
+
+.confirmationTitle{
+    font-size: 20px;
+    font-weight: bold;
+    color: #0e0237; /* Yellow for headers to match the UU logo */
+    text-align: center;
+    margin-top: 20px;
+}
+
+.confirmationText{
+    font-size: 16px;
+    color: #00040a; /* Yellow for headers to match the UU logo */
+    text-align: center;
+    margin-top: 10px;
+}
