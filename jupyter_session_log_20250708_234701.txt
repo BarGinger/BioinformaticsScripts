@@ -1,0 +1,35 @@
+============================================================
+JUPYTER SESSION LOG
+Generated: 2025-07-08 23:47:01
+============================================================
+
+[23:46:17] [INFO] Starting Jupyter Notebook session...
+[23:46:17] [INFO] Target server: binfgpu2
+[23:46:17] [INFO] Environment: bio
+[23:46:17] [INFO] Directory: Projects
+[23:46:17] [INFO] Checking port availability...
+[23:46:18] [SUCCESS] ✅ Port 8888 is available
+[23:46:18] [SUCCESS] Using local port: 8888
+[23:46:18] [SUCCESS] SSH shell session created
+[23:46:20] [INFO] Connecting to remote server...
+[23:46:20] [INFO] Executing: ssh binfgpu2
+[23:46:25] [SUCCESS] Successfully connected to remote server
+[23:46:25] [INFO] Setting up environment...
+[23:46:26] [INFO] Activating conda environment: bio
+[23:46:31] [SUCCESS] Environment 'bio' activated successfully
+[23:46:31] [INFO] Navigating to directory: Projects
+[23:46:33] [SUCCESS] Successfully changed to directory: Projects
+[23:46:33] [INFO] Starting Jupyter Notebook...
+[23:46:36] [INFO] Waiting for Jupyter to initialize...
+[23:46:47] [SUCCESS] Jupyter Notebook URL detected!
+[23:46:47] [SUCCESS] Jupyter running on port 8888
+[23:46:47] [INFO] Access token: 62dfb497...
+[23:46:47] [INFO] Creating SSH tunnel...
+[23:46:47] [INFO] Tunnel: localhost:8888 -> binfgpu2:8888
+[23:46:50] [SUCCESS] SSH tunnel established successfully
+[23:46:50] [SUCCESS] Jupyter Notebook URL: http://localhost:8888/?token=62dfb497896931d320a5f8756cddda47ad36148b19b2dc68
+[23:46:50] [SUCCESS] Jupyter Notebook opened in browser
+
+============================================================
+END OF SESSION LOG
+============================================================
