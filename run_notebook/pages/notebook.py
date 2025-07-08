@@ -109,12 +109,13 @@ layout = html.Div([
                             leftSection=DashIconify(icon="mdi:broom", width=16)
                         ),
                         dmc.Button(
-                            "Start Jupyter",
+                            "Starting Jupyter...",
                             id="start-jupyter-btn",
                             size="xs",
                             variant="filled",
                             color="green",
-                            leftSection=DashIconify(icon="mdi:play", width=16)
+                            leftSection=DashIconify(icon="mdi:loading", width=16),
+                            disabled=True
                         ),
                     ])
                 ], justify="space-between"),
@@ -127,7 +128,7 @@ layout = html.Div([
                 className="terminal-window",
                 children=[
                     html.Div("Welcome to Jupyter Notebook Session Manager", className="terminal-line"),
-                    html.Div("Click 'Start Jupyter' to begin...", className="terminal-line"),
+                    html.Div("Automatically starting Jupyter session...", className="terminal-line info"),
                 ],
                 style={
                     "backgroundColor": "#1e1e1e",
@@ -236,8 +237,8 @@ def populate_server_info(pathname, hostname, env_name, dest_folder):
         hostname or "Unknown",
         env_name or "base", 
         dest_folder or "Unknown",
-        "Ready",
-        "blue"
+        "Initializing",
+        "yellow"
     )
 
 # Callback to handle Jupyter startup
@@ -421,3 +422,16 @@ clientside_callback(
     State("send-command-btn", "n_clicks"),
     prevent_initial_call=True
 )
+
+# Callback to automatically start Jupyter when page loads
+@callback(
+    Output("start-jupyter-btn", "n_clicks", allow_duplicate=True),
+    Input("page-location-notebook", "pathname"),
+    State("start-jupyter-btn", "n_clicks"),
+    prevent_initial_call=True
+)
+def auto_start_jupyter(pathname, current_clicks):
+    if pathname == "/notebook":
+        # Automatically trigger the start button when page loads
+        return (current_clicks or 0) + 1
+    return no_update
